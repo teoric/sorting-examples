@@ -1,14 +1,19 @@
-# Scripts to generate sorted word lists
+# Sorting (Perl, Python, Ruby, Shell) on the Mac
 
-I always forget how to sort (German) word lists sensibly with Python,
-Ruby, Perl or on the Shell on the Mac.
+*illustrated with simple scripts to generate sorted word lists*
 
+I always forget how to sort word lists that also contain non-ASCII characters (basically any letters except `[A-Za-z]`, e.g. accented characters, non-Latin script, etc.) sensibly with Python,
+Ruby, Perl or on the Shell on the Mac. The specific problem is that the Mac locale support seems to be broken w.r.t. sorting.
 
-# Ruby does not seem to sort on anything else than character number by default. [http://rubygems.org/gems/unicode](Unicode) and [http://unicode-utils.rubyforge.org](Unicode Utils) help.
+The packages below help to sort strings according to the [Unicode collation algorithm](http://www.unicode.org/reports/tr10/). They are platform-independent and also work on the Mac.
 
-- Python and Perl do, but rely on locale, which seems to be broken on the Mac. For Perl, [Unicode::Collate](http://search.cpan.org/~sadahiro/Unicode-Collate/Collate.pm)(::Locale) is part of the core modules. For
+- [Ruby](ruby-lang.org) does not seem to sort on anything else than character number by default. [http://rubygems.org/gems/unicode](Unicode) and [http://unicode-utils.rubyforge.org](Unicode Utils) help:
+    - `UnicodeUtils.downcase`, `UnicodeUtils.upcase` etc.
+    - `Unicode.strcmp`
+
+- [Python](http://www.python.org) and [Perl](http://www.perl.org) can sort non-ASCII strings, but they rely on the locale setting (which seems to be broken on the Mac). For Perl, [Unicode::Collate](http://search.cpan.org/~sadahiro/Unicode-Collate/Collate.pm)(::Locale) is part of the core modules. For
 Python, there is [pyuca](https://github.com/jtauber/pyuca).
 
-- `sort` (both BSD and GNU) seems to be similary broken. `ucsort` from [Unicode::Tussle](http://search.cpan.org/~bdfoy/Unicode-Tussle/) can replace them.
+- `sort` (both BSD and GNU) also does not work for me. `ucsort` from [Unicode::Tussle](http://search.cpan.org/~bdfoy/Unicode-Tussle/) can replace them. Unicode::Tussle has heavy dependencies; but  [ucsort](http://cpansearch.perl.org/src/BDFOY/Unicode-Tussle-1.03/script/ucsort) does not.
 
 
