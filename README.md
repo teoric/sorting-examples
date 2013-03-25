@@ -14,6 +14,6 @@ The packages below help to sort strings according to the [Unicode collation algo
 - [Python](http://www.python.org) and [Perl](http://www.perl.org) can sort non-ASCII strings, but they rely on the locale setting (which seems to be broken on the Mac). For Perl, [Unicode::Collate](http://search.cpan.org/~sadahiro/Unicode-Collate/Collate.pm)(::Locale) is part of the core modules. For
 Python, there is [pyuca](https://github.com/jtauber/pyuca).
 
-- `sort` (both BSD and GNU) also does not work for me. `ucsort` from [Unicode::Tussle](http://search.cpan.org/~bdfoy/Unicode-Tussle/) can replace them. Unicode::Tussle has heavy dependencies; but  [ucsort](http://cpansearch.perl.org/src/BDFOY/Unicode-Tussle-1.03/script/ucsort) does not.
+- `sort` (both BSD and GNU) also does not work for me. `ucsort` from [Unicode::Tussle](http://search.cpan.org/~bdfoy/Unicode-Tussle/) can replace them. Unicode::Tussle has heavy dependencies; but  [ucsort (direct Link to code)](http://cpansearch.perl.org/src/BDFOY/Unicode-Tussle-1.03/script/ucsort) does not.
 
 
