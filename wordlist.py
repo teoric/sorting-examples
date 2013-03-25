@@ -8,7 +8,22 @@ from pyuca import Collator
 c = Collator("allkeys.txt")
 # available from http://www.unicode.org/Public/UCA/latest/allkeys.txt
 
-words = [u"Ärger", u"arg", u"Abel", u"Käse", "Kaese", "Kasein", u"Zeichen"]
+import fileinput
+import regex
 
-words.sort(key=c.sort_key)
-print(words)
+diff_line = regex.compile(ur'^(?:[+-]{3}|@@)')
+del_line = regex.compile(ur'^-')
+
+from collections import defaultdict
+words = defaultdict(int)
+
+for line in fileinput.input():
+    line = unicode(line.strip()).lower()
+    if diff_line.match(line) or del_line.match(line):
+        continue
+    for w in regex.split(ur'\W+',line):
+        words[w] += 1
+
+for w in sorted(words.keys(),key=c.sort_key):
+    print(u"{:4d} {}".format(words[w], w))
+
