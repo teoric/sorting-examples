@@ -3,14 +3,16 @@
 require "unicode_utils"  # allows downcasing
 require "unicode"        # allows sorting
 
-diff_re = /^(?:\+{3}|-{3})/
+diff_re = /^(?:\+{3}|-)/
 word_count = Hash.new(0)
-splitter_re = /[^[:word:]-]+/
-diff_indy_re = /^[\+-]/
+diff_indy_re = /^-/
+word_re = /#?(?:\p{Alnum}|-)*\p{Letter}{2,}(?:\p{Alnum}|-)*/u
 ARGF.each do |line|
   next if diff_re.match line
-  line.split(splitter_re).each do |w|
-    line.sub(diff_indy_re, "")
+  line.sub(diff_indy_re, "")
+  line.strip!
+  line.scan(word_re) do |w|
+    next if (w =~ /^#/)
     word_count[UnicodeUtils.downcase(w)] += 1
   end
 end

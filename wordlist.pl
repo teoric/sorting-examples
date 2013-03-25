@@ -8,7 +8,7 @@
 #  DESCRIPTION: make word frequency list from text
 #
 #      CREATED: 24.03.2013 22:47:23
-#  Last Change: 2013-03-25, 15:16:00 CET
+#  Last Change: 2013-03-25, 18:44:56 CET
 #===============================================================================
 
 # BOILERPLATE:
@@ -43,9 +43,9 @@ my %words;
 while (<>){
     next if (m/^(?:\+{3}|\-{3})/);
     s/^[+-]//;
-    my @words = split(/\W+/);
-    for my $word (@words){
-        $words{lc($word)}++;
+    while (m/#?(?:\w|-)*\p{L}{2,}(?:\w|-)*/g){
+        next if ($& =~ /^#/); # skip IDs
+        $words{lc($&)}++;
     }
 }
 
