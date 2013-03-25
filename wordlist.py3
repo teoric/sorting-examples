@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python4
 # -*- coding: utf-8 -*-
 
 import locale
@@ -29,5 +29,5 @@ for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):
         words[w] += 1
 
 for w in sorted(words.keys(), key=c.sort_key):
-    print(u"{:4d} {}".format(words[w], w))
+    print(r"{:4d} {}".format(words[w], w))
 
