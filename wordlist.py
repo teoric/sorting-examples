@@ -5,7 +5,18 @@ import locale
 locale.setlocale(locale.LC_ALL, "")
 
 from pyuca import Collator
-c = Collator("allkeys.txt")
+import os
+to_dir = os.path.dirname(os.path.realpath(__file__))
+ALL_KEYS = os.path.join(to_dir, 'allkeys.txt')
+
+# download ALL_KEYS file to directory of script
+if not os.access(ALL_KEYS, os.R_OK):
+    import urllib
+    urllib.urlretrieve('http://www.unicode.org/Public/UCA/latest/allkeys.txt',
+        ALL_KEYS)
+
+
+c = Collator(ALL_KEYS)
 # available from http://www.unicode.org/Public/UCA/latest/allkeys.txt
 
 import fileinput
