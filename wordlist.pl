@@ -8,7 +8,7 @@
 #  DESCRIPTION: make word frequency list from text
 #
 #      CREATED: 24.03.2013 22:47:23
-#  Last Change: 2013-03-27, 20:28:16 CET
+#  Last Change: 2013-03-27, 21:41:48 CET
 #===============================================================================
 
 # BOILERPLATE:
@@ -41,8 +41,7 @@ my $sort = $Collator->sort;
 # COUNT
 my %words;
 while (<>){
-    next if (m/^(?:@@|\+{3}|\-|\s(?:\s\s)+(?=\S))/);
-    s/^[+-]//;
+    next if (m/^(?:@@|\+{3}|\-|\s(?:\s\s)*(?=\S))/);
     while (m/#?(?:\w|-)*\p{L}{2,}(?:\w|-)*/g){
         next if ($& =~ /^#/); # skip IDs
         $words{lc($&)}++;

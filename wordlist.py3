@@ -22,18 +22,16 @@ c = Collator(ALL_KEYS)
 import fileinput
 import regex
 
-diff_line = regex.compile(r'^(?:[+]{3}|-|@@|\s(?:\s\s)+(?=\S))')
-del_line = regex.compile(r'^-')
+diff_line = regex.compile(r'(?V1)^(?:[+]{3}|-|@@|\s(?:\s\s)*(?=\S))')
 
 from collections import defaultdict
 words = defaultdict(int)
 
 for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):
-    line = line.strip().lower()
-    if diff_line.match(line) or del_line.match(line):
+    if diff_line.match(line):
         continue
-    line = regex.sub(r'^-', "", line)
-    for m in regex.finditer(r'#?(\w|-)*\p{L}{2,}(\w|-)*', line):
+    line = line.strip().lower()
+    for m in regex.finditer(r'(?V1)#?(\w|-)*\p{L}{2,}(\w|-)*', line):
         w = m.group(0)
         if w[0] == "#":
             continue

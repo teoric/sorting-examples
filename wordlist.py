@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import locale
@@ -22,18 +22,16 @@ c = Collator(ALL_KEYS)
 import fileinput
 import regex
 
-diff_line = regex.compile(ur'^(?:[+]{3}|-|@@|\s(?:\s\s)+(?=\S))')
-del_line = regex.compile(ur'^-')
+diff_line = regex.compile(ur'(?V1)^(?:@@|\+{3}|\-|\s(?:\s\s)*(?=\S))')
 
 from collections import defaultdict
 words = defaultdict(int)
 
 for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):
-    line = unicode(line.strip()).lower()
-    if diff_line.match(line) or del_line.match(line):
+    if diff_line.match(line):
         continue
-    line = regex.sub(ur'^-', "", line)
-    for m in regex.finditer(ur'#?(?:\w|-)*\p{L}{2,}(?:\w|-)*', line):
+    line = unicode(line.strip()).lower()
+    for m in regex.finditer(ur'(?V1)#?(?:\w|-)*\p{L}{2,}(?:\w|-)*', line):
         w = m.group(0)
         if w[0] == "#":
             continue
