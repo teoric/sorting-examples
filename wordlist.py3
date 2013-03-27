@@ -22,7 +22,7 @@ c = Collator(ALL_KEYS)
 import fileinput
 import regex
 
-diff_line = regex.compile(r'^(?:[+-]{3}|@@)')
+diff_line = regex.compile(r'^(?:[+]{3}|-|@@|\s(?:\s\s)+(?=\S))')
 del_line = regex.compile(r'^-')
 
 from collections import defaultdict

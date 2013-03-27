@@ -3,7 +3,7 @@
 require "unicode_utils"  # allows downcasing
 require "unicode"        # allows sorting
 
-diff_re = /^(?:\+{3}|-)/
+diff_re = /^(?:\+{3}|-|@@|\s(?:\s\s)+(?=\S))/
 word_count = Hash.new(0)
 diff_indy_re = /^-/
 word_re = /#?(?:\p{Alnum}|-)*\p{Letter}{2,}(?:\p{Alnum}|-)*/u
