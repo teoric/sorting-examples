@@ -1,23 +1,25 @@
 #!/usr/bin/env python3.3
 # -*- coding: utf-8 -*-
-
+"""program to genereate a word frequency list."""
 import locale
 locale.setlocale(locale.LC_ALL, "")
 
 from pyuca import Collator
 import os
-to_dir = os.path.dirname(os.path.realpath(__file__))
-ALL_KEYS = os.path.join(to_dir, 'allkeys.txt')
 
 # download ALL_KEYS file to directory of script
-if not os.access(ALL_KEYS, os.R_OK):
-    import urllib
-    urllib.urlretrieve('http://www.unicode.org/Public/UCA/latest/allkeys.txt',
-        ALL_KEYS)
-
-
-c = Collator(ALL_KEYS)
 # available from http://www.unicode.org/Public/UCA/latest/allkeys.txt
+# now included in pyuca
+# if not os.access(ALL_KEYS, os.R_OK):
+#     import urllib
+#     urllib.request.urlretrieve(
+#         'http://www.unicode.org/Public/UCA/latest/allkeys.txt',
+#         ALL_KEYS)
+# to_dir = os.path.dirname(os.path.realpath(__file__))
+# ALL_KEYS = os.path.join(to_dir, 'allkeys.txt')
+# c = Collator(ALL_KEYS)
+
+c = Collator()
 
 import fileinput
 import regex
@@ -39,4 +41,3 @@ for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):
 
 for w in sorted(words.keys(), key=c.sort_key):
     print(r"{:4d} {}".format(words[w], w))
-
