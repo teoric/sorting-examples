@@ -5,8 +5,8 @@ import locale
 locale.setlocale(locale.LC_ALL, "")
 
 from pyuca import Collator
-import os
 
+# import os
 # download ALL_KEYS file to directory of script
 # available from http://www.unicode.org/Public/UCA/latest/allkeys.txt
 # now included in pyuca
