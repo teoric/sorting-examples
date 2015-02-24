@@ -7,6 +7,10 @@ Does not work anymore because pyuca is now python 3 only:
 <https://github.com/jtauber/pyuca/issues/3>
 """
 
+print __doc__
+print "\nSorry!"
+exit(1)
+
 import locale
 locale.setlocale(locale.LC_ALL, "")
 
