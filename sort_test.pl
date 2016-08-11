@@ -11,7 +11,7 @@
 #        NOTES: inspired by http://www.perl.com/pub/2012/06/perlunicook-make-cmp-work-on-text-instead-of-codepoints.html
 #      VERSION: 1.0
 #      CREATED: 2012-06-09
-#  Last Change: 2015-02-24, 15:35:27 CET
+#  Last Change: 2016-08-11, 22:45:24 CEST
 #===============================================================================
 
 use strict;
@@ -37,7 +37,9 @@ use Unicode::Collate;
 my $es = Unicode::Collate->new(
     # level         => 1,
     level         => 2,
-    ignore_level2 => 1, # By default, case-sensitive comparison (that is level 3 difference) won't ignore accents (that is level 2 difference).
+    # By default, case-sensitive comparison (that is level 3 difference)
+    # won't ignore accents (that is level 2 difference).
+    ignore_level2 => 1,
     normalization => undef,
     # normalization => "NFKD",
 );
