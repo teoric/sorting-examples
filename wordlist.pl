@@ -5,7 +5,7 @@
 #
 #        USAGE: ./wordlist.pl  
 #
-#  DESCRIPTION: make word frequency list from text
+#  DESCRIPTION: make sorted word frequency list from text
 #
 #      CREATED: 24.03.2013 22:47:23
 #  Last Change: 2013-03-27, 21:41:48 CET
