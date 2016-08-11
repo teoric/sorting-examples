@@ -1,10 +1,14 @@
-#!/usr/bin/env python3.3
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
-"""program to genereate a word frequency list."""
+"""program to generate a sorted word frequency list."""
 import locale
-locale.setlocale(locale.LC_ALL, "")
 
+import fileinput
+import regex
 from pyuca import Collator
+
+
+locale.setlocale(locale.LC_ALL, "")
 
 # import os
 # download ALL_KEYS file to directory of script
@@ -21,8 +25,6 @@ from pyuca import Collator
 
 c = Collator()
 
-import fileinput
-import regex
 
 diff_line = regex.compile(r'(?V1)^(?:[+]{3}|-|@@|\s(?:\s\s)*(?=\S))')
 

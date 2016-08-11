@@ -1,16 +1,18 @@
-#!/usr/bin/env python3.3
+#!/usr/bin/env python3.5
 # -*- coding: utf-8 -*-
-"""program to genereate a word frequency list. Sorting with strxfrm."""
+"""program to genereate a word frequency list. Sorting with strxfrm.
+
+Does not sort correctly on Mac."""
 import locale
-locale.setlocale(locale.LC_ALL, "")
 
-
+from collections import defaultdict
 import fileinput
 import regex
 
+locale.setlocale(locale.LC_ALL, "")
 diff_line = regex.compile(r'(?V1)^(?:[+]{3}|-|@@|\s(?:\s\s)*(?=\S))')
 
-from collections import defaultdict
+
 words = defaultdict(int)
 
 for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):

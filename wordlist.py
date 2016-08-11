@@ -3,35 +3,23 @@
 
 u"""Program to genereate a sorted word frequency list."""
 
+from collections import defaultdict
+import fileinput
+import locale
+import os
+import regex
 import sys
+from pyuca import Collator
+
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-import locale
 locale.setlocale(locale.LC_ALL, "")
 
-from pyuca import Collator
-import os
-to_dir = os.path.dirname(os.path.realpath(__file__))
-ALL_KEYS = os.path.join(to_dir, 'allkeys.txt')
-
-# download ALL_KEYS file to directory of script
-# (for older versions of pyuca)
-if not os.access(ALL_KEYS, os.R_OK):
-    import urllib
-    urllib.urlretrieve('http://www.unicode.org/Public/UCA/latest/allkeys.txt',
-        ALL_KEYS)
-
-
-c = Collator(ALL_KEYS)
-# available from http://www.unicode.org/Public/UCA/latest/allkeys.txt
-
-import fileinput
-import regex
+c = Collator()
 
 diff_line = regex.compile(ur'(?V1)^(?:@@|\+{3}|\-|\s(?:\s\s)*(?=\S))')
 
-from collections import defaultdict
 words = defaultdict(int)
 
 for line in fileinput.input(openhook=fileinput.hook_encoded("UTF-8")):
