@@ -1,15 +1,11 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 
-u"""Currently dysfunctional program to genereate a word frequency list.
+u"""Program to genereate a sorted word frequency list."""
 
-Does not work anymore because pyuca is now python 3 only:
-<https://github.com/jtauber/pyuca/issues/3>
-"""
-
-print __doc__
-print "\nSorry!"
-exit(1)
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 import locale
 locale.setlocale(locale.LC_ALL, "")

@@ -25,12 +25,12 @@ use open qw( :encoding(UTF-8) :std );
 # only if DATA is used:
 binmode(DATA, ":encoding(UTF-8)");
 
+use v5.14;
 # use charnames qw( :full :short );
 use feature qw(say state switch unicode_strings);
 use autodie;
 use open qw( :encoding(UTF-8) :std );
 use IO::Handle;
-use v5.14;
 
 use Unicode::Collate;
 

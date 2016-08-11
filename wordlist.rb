@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# make sorted word frequency list from text
+
 require "unicode_utils"  # allows downcasing
 require "unicode"        # allows sorting
 
